@@ -235,7 +235,7 @@ function getNNOutput() {
 			}
 		}
 	}
-	//console.log('got count = ' + count); // 1024 + 28*28*6 = 5728	
+	console.log('got count = ' + count); // 1024 + 28*28*6 = 5728	
 	
 	var downMapSize = (outputImageSize-halfFilter)/2;
 	var downMaps_1 = [];
@@ -252,7 +252,7 @@ function getNNOutput() {
 			}
 		}
 	}
-	//console.log('got count = ' + count); // 1024 + 28*28*6 + 14*14*6 = 6904
+	console.log('got count = ' + count); // 1024 + 28*28*6 + 14*14*6 = 6904
 	
 	var featMapArray_2 = [];
 	convLayer = 1;
@@ -288,7 +288,7 @@ function getNNOutput() {
 			}
 		}
 	}
-	//console.log('got count = ' + count); // 1024 + 28*28*6 + 14*14*6 + 10*10*16 = 8504
+	console.log('got count = ' + count); // 1024 + 28*28*6 + 14*14*6 + 10*10*16 = 8504
 	
 	downMapSize = (outputImageSize-halfFilter)/2;
 	downMaps_2 = [];
@@ -307,7 +307,7 @@ function getNNOutput() {
 			}
 		}
 	}
-	//console.log('got count = ' + count); // 1024 + 28*28*6 + 14*14*6 + 10*10*16 + 5*5*16 = 8904
+	console.log('got count = ' + count); // 1024 + 28*28*6 + 14*14*6 + 10*10*16 + 5*5*16 = 8904
 	var fcCountStart = count;
 	var inp = Vector.create(inputArray);
 	
