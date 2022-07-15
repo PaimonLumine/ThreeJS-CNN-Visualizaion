@@ -1,3 +1,3 @@
 # ThreeJSlearning
 
-ThreeJS Visualization of CNN
+ThreeJS Visualization of a CNN
