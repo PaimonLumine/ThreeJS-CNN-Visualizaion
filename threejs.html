@@ -38,6 +38,17 @@
 		<link rel="stylesheet" type="text/css" href="css/katex.min.css">
 		<script type="text/javascript" src="js/katex.min.js"></script>
 		
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			.box{width: 200px;height: 200px;margin:10px auto; position:fixed; left: -10px; top: 600px;}
+			.red,.green,.blue{width: 275px;height: 20px;float: left;position: relative;border:1px solid #eee;margin:10px;color:white;line-height: 20px;text-align: center;user-select: none}
+			.mark{width:20px;height: 20px;background:#ccc;position: absolute;cursor: pointer;left:0;top:0;}
+			.show{width: 100px;height: 100px;border:1px solid #000;float: left;margin-left:50px;margin-top:-50px;}
+			.bag{width: 0;height: 20px;position: absolute;left:0;top:0;} 
+			.red .bag{background:red;}
+			.green .bag{background:green;}
+			.blue .bag{background:blue;}
+		</style>
 		
 	</head>
 	<body>
@@ -73,7 +84,7 @@
 				</div>
 			</div>
 		</div>
-	
+
 		<div id="canvasContainer"> <!--style="visibility: hidden">-->
 			<div id="drawingInterface">
 				<div class="instructions">Draw your number here</div>
@@ -95,8 +106,73 @@
 					</div>
 				</div>
 			</div>
+			<div id="filterInterface">
+				<div class="box">
+					<div class="red">
+						<div class="mark r">r</div>   
+						<div class="bag"></div>      
+					</div>
+					<div class="green">
+						<div class="mark g">g</div>
+						<div class="bag"></div>
+					</div>
+					<div class="blue"> 
+						<div class="mark b">b</div>
+						<div class="bag"></div>
+					</div>
+			
+					<div class="show"></div>
+				</div>		
+			</div>
+
 		</div>
-		
+
+		<script type="text/javascript">
+			var marks = document.querySelectorAll(".mark");
+			var show = document.querySelector(".show");
+			var r = document.querySelector(".r")
+			var g = document.querySelector(".g");
+			var b = document.querySelector(".b");
+	
+			var bags = document.querySelectorAll(".bag");
+	
+			for(let i = 0 ; i < marks.length;i++){
+	
+				
+				marks[i].onmousedown = function(evt){
+					//获取到鼠标按下时候鼠标当前的位置
+				
+					var x = evt.clientX;
+					//获取到当前mark的坐标
+					
+					var left = this.offsetLeft;
+					
+	
+				window.onmousemove = function(evt){
+					
+					//获取到鼠标移动时候的位置
+					var disx = evt.clientX - x //鼠标移动的距离就是盒子移动的距离
+					//此时盒子的坐标
+					var ws = left + disx;     
+					ws<0 ? ws=0 : ws; 　　//让滑动块始终存在于盒子的里面
+					ws > 255?ws=255: ws;
+					marks[i].style.left = ws + "px";
+					bags[i].style.width = ws + "px";
+	
+					show.style.background= `rgb(${r.offsetLeft},${g.offsetLeft},${b.offsetLeft})`  // 模板字符串 rgb(255,0,0)
+	
+					
+				}
+				window.onmouseup = function(){
+				
+					window.onmousemove = null;
+					window.onmouseup = null;
+				}
+			}
+			}
+			
+		</script>
+
 		<script>
 
 			

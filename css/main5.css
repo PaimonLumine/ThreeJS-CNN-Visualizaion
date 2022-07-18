@@ -159,10 +159,9 @@ body {
 	margin-bottom: 5px;
 	background: rgb(30,35,40);
 }
-#filterInterface {
-	padding:5px;
-	font-size:20px;
-	color: #abc;
+#box {	
+	padding: 5px;
+	margin-bottom: 5px;
 	background: rgb(30,35,40);
 }
 .settings {
