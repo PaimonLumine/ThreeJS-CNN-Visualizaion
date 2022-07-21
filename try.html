@@ -123,7 +123,7 @@
                     //console.log(typeof savedcolor2);
                     savedcolor = parseFloat(savedcolor);
                     savedcolor = parseInt(savedcolor *3.6);
-                    savedcolor = (savedcolor + 180) % 360;
+                    savedcolor = (savedcolor + 270) % 360;
                     savedcolor = savedcolor / 360;
                     savedcolor2 = savedcolor2 / 100;
                     if (savedcolor == NaN) {
@@ -135,7 +135,7 @@
                     if (savedcolor2 == "") {
                         savedcolor2 = 0.5;
                     }
-                    //console.log(savedcolor2);
+                    console.log(savedcolor2);
                     if (savedcolor2 <= 0.5) {
                         savedcolor2 = 0.5;
                     }
