@@ -78,7 +78,7 @@
                 allowEmpty: true, // 「指定なし」を許可する
                 chooseText: "OK", // 選択ボタンのテキスト
                 cancelText: "Cancel", // キャンセルボタンのテキスト
-                showButtons: true, // ボタンを表示する
+                showButtons: false, // ボタンを表示する
                 containerClassName: "full-spectrum", // ピッカーの部品を囲うタグ(要素)のクラス名
                 replacerClassName: "", // ピッカーを表示させるボタンのクラス名
                 preferredFormat: "hsl", // カラーコードの形式を指定したものに変更する (可能な限り。hex, hex3等)
@@ -112,6 +112,23 @@
                     $("#bodyDesign").css(
                         "background", 
                         "radial-gradient(ellipse at center, " + color + ", rgb(255, 255, 255)) 100%");
+                        console.log(color);
+                    window.savedcolor = color.getOriginalInput().h;
+                    window.savedcolor2 = color.getOriginalInput().s;
+                    window.savedcolor3 = color.getOriginalInput().l;
+                    savedcolor = savedcolor.slice( 0 , -2);
+                    savedcolor2 = savedcolor.slice( 0 , -2);
+                    savedcolor3 = savedcolor.slice( 0 , -2);
+                    savedcolor2 = parseFloat(savedcolor) / 100;
+                    savedcolor3 = parseFloat(savedcolor) / 100;
+                    savedcolor = parseFloat(savedcolor);
+                    savedcolor = parseInt(savedcolor *3.6);
+                    savedcolor = (savedcolor + 180) % 360;
+                    savedcolor = savedcolor / 360;
+                    if (savedcolor == NaN) {
+                        savedcolor = 0.9;
+                    } 
+                    console.log(savedcolor2);
                 },
                 // ピッカーが閉じた時のイベント
                 hide: function (color) {
@@ -234,6 +251,15 @@
         var hidden_weights_1a, hidden_weights_2a, final_weightsa;
         var conv_weights_1a;
         var conv_weights_2a;
+
+        var countdown = 0;
+        if (countdown == 0) {
+            var savedcolor = 0.36;
+            var savedcolor2 = 1;
+            var savedcolor3 = 1;
+            countdown++;
+        }
+        
 
         var keeperIndices;
         var nKeepers;
@@ -616,7 +642,7 @@
                                 r = 0; g = 0; b = 0;
                             }
                             color = new THREE.Color();
-                            color.setRGB(r, g, b)
+                            color.setHSL(savedcolor, 1 * savedcolor2, v *savedcolor3);
                         }
                         /*
                         if (id <=1024){
@@ -716,8 +742,10 @@
                                     bw = blueLookup[colorNum];
 
                                     colors[vertCount] = new THREE.Color(rw, gw, bw);
+                                colors[vertCount].setHSL(savedcolor, v, 0.5);
                                     vertCount++;
                                     colors[vertCount] = new THREE.Color(rw, gw, bw);
+                                colors[vertCount].setHSL(savedcolor, v, 0.5);
                                     vertCount++;
                                 }
                             }
@@ -759,8 +787,10 @@
                                         bw = blueLookup[colorNum];
 
                                         colors[vertCount] = new THREE.Color(rw, gw, bw);
+                                colors[vertCount].setHSL(savedcolor, v, 0.5);
                                         vertCount++;
                                         colors[vertCount] = new THREE.Color(rw, gw, bw);
+                                colors[vertCount].setHSL(savedcolor, v, 0.5);
                                         vertCount++;
                                     }
                                 }
@@ -804,8 +834,10 @@
                                         bw = blueLookup[colorNum];
 
                                         colors[vertCount] = new THREE.Color(rw, gw, bw);
+                                colors[vertCount].setHSL(savedcolor, v, 0.5);
                                         vertCount++;
                                         colors[vertCount] = new THREE.Color(rw, gw, bw);
+                                colors[vertCount].setHSL(savedcolor, v, 0.5);
                                         vertCount++;
                                     }
                                 }
@@ -847,8 +879,10 @@
                                         bw = blueLookup[colorNum];
 
                                         colors[vertCount] = new THREE.Color(rw, gw, bw);
+                                colors[vertCount].setHSL(savedcolor, v, 0.5);
                                         vertCount++;
                                         colors[vertCount] = new THREE.Color(rw, gw, bw);
+                                colors[vertCount].setHSL(savedcolor, v, 0.5);
                                         vertCount++;
                                     }
                                 }
@@ -884,8 +918,10 @@
                                 bw = blueLookup[colorNum];
 
                                 colors[vertCount] = new THREE.Color(rw, gw, bw);
+                                colors[vertCount].setHSL(savedcolor, v, 0.5);
                                 vertCount++;
                                 colors[vertCount] = new THREE.Color(rw, gw, bw);
+                                colors[vertCount].setHSL(savedcolor, v, 0.5);
                                 vertCount++;
                             }
                         } else if (layerNum[interID] == 6) {
@@ -917,8 +953,12 @@
                                 bw = blueLookup[colorNum];
 
                                 colors[vertCount] = new THREE.Color(rw, gw, bw);
+                                colors[vertCount].setHSL(savedcolor, v, 0.5);
+                                colors[vertCount].setHSL(savedcolor, v, 0.5);
                                 vertCount++;
                                 colors[vertCount] = new THREE.Color(rw, gw, bw);
+                                colors[vertCount].setHSL(savedcolor, v, 0.5);
+                                colors[vertCount].setHSL(savedcolor, v, 0.5);
                                 vertCount++;
                             }
                         } else if (layerNum[interID] == 7) {
@@ -950,11 +990,14 @@
                                 bw = blueLookup[colorNum];
 
                                 colors[vertCount] = new THREE.Color(rw, gw, bw);
+                                colors[vertCount].setHSL(savedcolor, v, 0.5);
                                 vertCount++;
                                 colors[vertCount] = new THREE.Color(rw, gw, bw);
+                                colors[vertCount].setHSL(savedcolor, v, 0.5);
                                 vertCount++;
                             }
                         }
+                        console.log("color: " + savedcolor);
                         v = allNodeOutputs[ind];
                         colorNum = math.round(v * 99);
                         r = redLookup[colorNum];
@@ -1138,6 +1181,7 @@
             if (!rotatingCam) {
                 pick();
                 updateEdges();
+                updateCubes();
             }
 
             document.getElementById("infobox").style.visibility = "hidden";
