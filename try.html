@@ -112,23 +112,33 @@
                     $("#bodyDesign").css(
                         "background", 
                         "radial-gradient(ellipse at center, " + color + ", rgb(255, 255, 255)) 100%");
-                        console.log(color);
+                        //console.log(color);
                     window.savedcolor = color.getOriginalInput().h;
                     window.savedcolor2 = color.getOriginalInput().s;
-                    window.savedcolor3 = color.getOriginalInput().l;
-                    savedcolor = savedcolor.slice( 0 , -2);
-                    savedcolor2 = savedcolor.slice( 0 , -2);
-                    savedcolor3 = savedcolor.slice( 0 , -2);
-                    savedcolor2 = parseFloat(savedcolor) / 100;
-                    savedcolor3 = parseFloat(savedcolor) / 100;
+                    //console.log(savedcolor);
+                    //console.log(window.savedcolor2);
+                    savedcolor = savedcolor.slice( 0 , -1);//去掉百分号
+                    savedcolor2 = savedcolor.slice( 0 , -1);
+                    //console.log(savedcolor);
+                    //console.log(typeof savedcolor2);
                     savedcolor = parseFloat(savedcolor);
                     savedcolor = parseInt(savedcolor *3.6);
                     savedcolor = (savedcolor + 180) % 360;
                     savedcolor = savedcolor / 360;
+                    savedcolor2 = savedcolor2 / 100;
                     if (savedcolor == NaN) {
                         savedcolor = 0.9;
                     } 
-                    console.log(savedcolor2);
+                    if (savedcolor > 1) {
+                        savedcolor  = 0.9;
+                    }
+                    if (savedcolor2 == "") {
+                        savedcolor2 = 0.5;
+                    }
+                    //console.log(savedcolor2);
+                    if (savedcolor2 <= 0.5) {
+                        savedcolor2 = 0.5;
+                    }
                 },
                 // ピッカーが閉じた時のイベント
                 hide: function (color) {
@@ -240,7 +250,7 @@
         var nHiddenLayers = 2;
         var nFinalNodes = 10;
         var nNodes = nPixels + nConvNodes_1 + nConvNodes_1_down + nConvNodes_2 + nConvNodes_2_down + nHiddenNodes_1 + nHiddenNodes_2 + nFinalNodes;
-        console.log('nNodes = ' + nNodes);
+        //console.log('nNodes = ' + nNodes);
         var allNodeNums = new Array(nNodes);
         var allNodeInputs = new Array(nNodes);
         var allNodeOutputs = new Array(nNodes);
@@ -256,7 +266,6 @@
         if (countdown == 0) {
             var savedcolor = 0.36;
             var savedcolor2 = 1;
-            var savedcolor3 = 1;
             countdown++;
         }
         
@@ -642,7 +651,7 @@
                                 r = 0; g = 0; b = 0;
                             }
                             color = new THREE.Color();
-                            color.setHSL(savedcolor, 1 * savedcolor2, v *savedcolor3);
+                            color.setHSL(savedcolor, savedcolor2, v * 0.8);
                         }
                         /*
                         if (id <=1024){
@@ -685,7 +694,7 @@
 
         function updateEdges() {
             var r = 1, g = 1, b = 1, rw = 1, gw, bw, i, j, v, colorNum, weight;
-            console.log('updating edges');
+            //console.log('updating edges');
             var vertAdjust = 3;
             var numChildren = scene.children.length;
             var colors = [];
@@ -954,11 +963,11 @@
 
                                 colors[vertCount] = new THREE.Color(rw, gw, bw);
                                 colors[vertCount].setHSL(savedcolor, v, 0.5);
-                                colors[vertCount].setHSL(savedcolor, v, 0.5);
+                                
                                 vertCount++;
                                 colors[vertCount] = new THREE.Color(rw, gw, bw);
                                 colors[vertCount].setHSL(savedcolor, v, 0.5);
-                                colors[vertCount].setHSL(savedcolor, v, 0.5);
+                            
                                 vertCount++;
                             }
                         } else if (layerNum[interID] == 7) {
@@ -997,7 +1006,7 @@
                                 vertCount++;
                             }
                         }
-                        console.log("color: " + savedcolor);
+                        //console.log("color: " + savedcolor);
                         v = allNodeOutputs[ind];
                         colorNum = math.round(v * 99);
                         r = redLookup[colorNum];
