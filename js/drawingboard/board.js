@@ -207,7 +207,7 @@ DrawingBoard.Board.prototype = {
 
 	/**
 	 * Controls:
-	 * the drawing board can has various UI elements to control it.
+	 * the drawing board can have various UI elements to control it.
 	 * one control is represented by a class in the namespace DrawingBoard.Control
 	 * it must have a $el property (jQuery object), representing the html element to append on the drawing board at initialization.
 	 *
