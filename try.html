@@ -634,13 +634,6 @@
                         faceCount++;
                         if (faceCount % 12 == 1) {
                             id = math.floor(faceCount / 12);
-                            /*
-                            if (id <= 1024) {
-                            	
-                                //materials[faceCount] = new THREE.MeshLambertMaterial({ color: 0x0000ff, shading: THREE.FlatShading, transparent: false} );									
-                            	
-                            }
-                            */
                             if (isComputed) {
                                 var v = allNodeOutputs[id];
                                 var colorNum = math.round(v * 99);

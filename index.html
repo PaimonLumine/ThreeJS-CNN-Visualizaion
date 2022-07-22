@@ -293,7 +293,7 @@
         var inputCtx = inputCanvas.getContext("2d");
         var filterCtx = filterCanvas.getContext("2d");
 
-        //var offset = new THREE.Vector3( 10, 10, 10 );
+        //draw numbers from 0 to 9
 
         var nums = "0 1 2 3 4 5 6 7 8 9",
             height = 1,
@@ -360,7 +360,6 @@
                 }
 
             });
-            //console.log('applied colors to ' + count + 'vertices');
 
         }
         function applySpecialVertexColors(g) {
@@ -430,7 +429,6 @@
                 ));
             hideInputBox.position.set(0, -250, 0);
             hideInputBox.visible = true;
-            //scene.add( hideInputBox );
 
 
             renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -445,13 +443,6 @@
             cameraControls = new THREE.OrbitControls(camera, renderer.domElement);
             cameraControls.target.set(0, 0, 0);
 
-
-            /*
-            stats = new Stats();
-            stats.domElement.style.position = 'absolute';
-            stats.domElement.style.top = '0px';
-            container.appendChild( stats.domElement );
-            */
             renderer.domElement.addEventListener('mousemove', onMouseMove);
             renderer.domElement.addEventListener('mousedown', onMouseDown);
             renderer.domElement.addEventListener('click', onClick);
@@ -465,16 +456,6 @@
         }
 
         function drawCubes() {
-
-            /*
-            var numChildren = scene.children.length;							
-                            for ( var c = 0; c<numChildren; c++) {
-                if ( scene.children[c].name == 'cubes' ){
-                    var object = scene.children[c];
-                    object.geometry.dispose();
-                }
-            }
-            */
 
             var weight = 1, i;
             var geometry = new THREE.Geometry();
@@ -513,14 +494,6 @@
                 scale.x = 1;
                 scale.y = 1;
                 scale.z = 1;
-
-                /*
-                if (input_hide && i<=1024){
-                    scale.x = 0.1;
-                    scale.y = 0.1;
-                    scale.z = 0.1;
-                }
-                */
 
 
                 quaternion.setFromEuler(rotation, false);
@@ -615,32 +588,13 @@
                     var object = scene.children[i];
                     var materials = object.material;
                     var geometry = object.geometry;
-                    //console.log(materials);
                     var faceCount = 0;
-                    /*
-                    for (r=1;r<100;r++) {
-                        geometry.material = new THREE.MeshLambertMaterial({ color: 0x0000ff, shading: THREE.FlatShading, transparent: false} );									
-                    }
-                    */
-
-                    //object.scale.set(0.1,0.1,0.1);
                     var vertCount = 0;
-
-
-
-                    //console.log('found ' + vertCount + ' vertices');
 
                     geometry.faces.forEach(function (f) {
                         faceCount++;
                         if (faceCount % 12 == 1) {
                             id = math.floor(faceCount / 12);
-                            /*
-                            if (id <= 1024) {
-                            	
-                                //materials[faceCount] = new THREE.MeshLambertMaterial({ color: 0x0000ff, shading: THREE.FlatShading, transparent: false} );									
-                            	
-                            }
-                            */
                             if (isComputed) {
                                 var v = allNodeOutputs[id];
                                 var colorNum = math.round(v * 99);
@@ -653,24 +607,12 @@
                             color = new THREE.Color();
                             color.setHSL(savedcolor, savedcolor2, v * 0.8);
                         }
-                        /*
-                        if (id <=1024){
-                            color.setRGB(0,0,0);
-                        }
-                        */
-                        //console.log('id = ' + id);
                         var n = (f instanceof THREE.Face3) ? 3 : 4;
                         for (var j = 0; j < n; j++) {
                             f.vertexColors[j] = color;
 
                         }
                     });
-                    /*if (id <= 1024) {
-                        material.opacity = 0;
-                        material.needsUpdate = true;
-                    }*/
-                    //material.visible = false;
-                    //material.needsUpdate = true;
 
                     geometry.colorsNeedUpdate = true;
                     geometry.verticesNeedUpdate = true;
@@ -694,7 +636,6 @@
 
         function updateEdges() {
             var r = 1, g = 1, b = 1, rw = 1, gw, bw, i, j, v, colorNum, weight;
-            //console.log('updating edges');
             var vertAdjust = 3;
             var numChildren = scene.children.length;
             var colors = [];
@@ -714,7 +655,6 @@
                         } else if (layerNum[interID] == 1) {
                             // conv1
                             //var friendCount = 0;
-                            //console.log('row,col = ' + row + ', ' + col);
                             for (j = 1; j <= nPixels; j++) {
                                 ind_below = j - 1;
                                 temp_below = allNodeNums[ind_below] - 1;
@@ -758,7 +698,6 @@
                                     vertCount++;
                                 }
                             }
-                            //console.log('friendCount = ' + friendCount);
                         } else if (layerNum[interID] == 2) {
                             // down1
                             for (j = 1; j <= nConvNodes_1; j++) {
@@ -1006,7 +945,6 @@
                                 vertCount++;
                             }
                         }
-                        //console.log("color: " + savedcolor);
                         v = allNodeOutputs[ind];
                         colorNum = math.round(v * 99);
                         r = redLookup[colorNum];
@@ -1039,11 +977,9 @@
         }
 
         function onClick(e) {
-            //console.log('click');
         }
 
         function onMouseUp(e) {
-            //console.log('mouse up');
             rotatingCam = false;
 
             var infobox = document.getElementById("infobox");
@@ -1098,7 +1034,6 @@
 
             if (data && pixelBuffer[3]) {
                 var temp = pickingData[id].id;
-                //console.log('id = ' + id);
                 if (!((input_hide && temp < nPixels) ||
                     (conv1_hide && temp >= nPixels && temp < nPixels + nConvNodes_1) ||
                     (down1_hide && temp >= nPixels + nConvNodes_1 && temp < nPixels + nConvNodes_1 + nConvNodes_1_down) ||
@@ -1156,16 +1091,13 @@
                     if (data.position && data.rotation && data.scale) {
                         highlightBox.position.copy(data.position);
                         highlightBox.rotation.copy(data.rotation);
-                        //highlightBox.scale.copy( data.scale );//.add( offset );
                         highlightBox.visible = true;
                         intersected = true;
                     }
                 }
             } else {
-                //if(infobox.style.visibility == 'hidden') {
                 highlightBox.visible = false;
                 intersected = false;
-                //}
             }
             if (highlightBox.visible == true) {
                 var r, g, b;
