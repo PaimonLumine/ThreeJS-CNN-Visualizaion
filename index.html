@@ -61,30 +61,30 @@
     <script>
         jQuery(function ($) {
             $("#picker").spectrum({
-                color: "#1205fe", // 初期値
-                flat: false, // trueの場合、クリックしなくてもピッカーが表示されるようにする
-                showInput: true, // コードの入力欄を表示する
-                showAlpha: true, // 不透明度の選択バーを表示する
-                disabled: false, // trueの場合、ピッカーを無効にする
-                showPalette: true, // パレットを表示する
-                showPaletteOnly: false, // true の場合、パレットのみの表示にする
-                togglePaletteOnly: false, // true の場合、パレット以外の部分はボタンで表示切替する
-                togglePaletteMoreText: "詳細", // togglePaletteOnlyがtrueの場合のボタン名(開く)
-                togglePaletteLessText: "閉じる", // togglePaletteOnlyがtrueの場合のボタン名(閉じる)
-                showSelectionPalette: true, // ユーザーが前に選択した色をパレットに表示する
-                maxSelectionSize: 10, // 選択した色を記憶する数の上限
-                hideAfterPaletteSelect: false, // true の場合、パレットを選んだ時点でピッカーを閉じる
-                clickoutFiresChange: true, // ピッカーの外側をクリックしてピッカーを閉じた際にchangeイベントを発生させる
-                showInitial: true, // 初期の色と選択した色を見比べるエリアを表示する
-                allowEmpty: true, // 「指定なし」を許可する
-                chooseText: "OK", // 選択ボタンのテキスト
-                cancelText: "Cancel", // キャンセルボタンのテキスト
-                showButtons: false, // ボタンを表示する
-                containerClassName: "full-spectrum", // ピッカーの部品を囲うタグ(要素)のクラス名
-                replacerClassName: "", // ピッカーを表示させるボタンのクラス名
-                preferredFormat: "hsl", // カラーコードの形式を指定したものに変更する (可能な限り。hex, hex3等)
-                localStorageKey: "spectrum.demo", // localStorageに選択色を記憶する際のキー
-                palette: [ // パレット
+                color: "#1205fe", // 初始值
+                flat: false, // 如果为 true，则允许选择器出现而不单击
+                showInput: true, // 显示代码输入字段
+                showAlpha: true, // 显示不透明度选择栏
+                disabled: false, // 如果为真，禁用选择器
+                showPalette: true, // 显示调色板
+                showPaletteOnly: false, // 如果为真，则仅显示调色板
+                togglePaletteOnly: false, // 如果为真，则使用按钮切换调色板以外的部分的显示。
+                togglePaletteMoreText: "详细", // togglePaletteOnly 为 true（打开）时的按钮名称
+                togglePaletteLessText: "缩略", // togglePaletteOnly 为 true 时的按钮名称（关闭）
+                showSelectionPalette: true, // 在调色板中显示用户先前选择的颜色
+                maxSelectionSize: 10, // 记忆所选颜色的最大数量
+                hideAfterPaletteSelect: false, // 如果为 true，则在选择调色板时关闭选择器
+                clickoutFiresChange: true, // 当您在选择器外部单击并关闭选择器时引发更改事件
+                showInitial: true, // 显示一个区域以将初始颜色与选定颜色进行比较
+                allowEmpty: true, // 允许“未指定”
+                chooseText: "OK", // 选择按钮文本
+                cancelText: "Cancel", // 取消按钮文本
+                showButtons: false, // 显示按钮
+                containerClassName: "full-spectrum", // 包含选取器部分的标签（元素）的类名
+                replacerClassName: "", // 显示选择器的按钮的类名
+                preferredFormat: "hsl", // 将色码格式改成指定的（hex、hex3等）
+                localStorageKey: "spectrum.demo", // 用于将所选颜色存储在 localStorage 中的键
+                palette: [ // 调色板
                     ["rgb(0, 0, 0)", "rgb(67, 67, 67)", "rgb(102, 102, 102)",
                         "rgb(204, 204, 204)", "rgb(217, 217, 217)", "rgb(255, 255, 255)"],
                     ["rgb(152, 0, 0)", "rgb(255, 0, 0)", "rgb(255, 153, 0)", "rgb(255, 255, 0)", "rgb(0, 255, 0)",
@@ -100,15 +100,15 @@
                         "rgb(91, 15, 0)", "rgb(102, 0, 0)", "rgb(120, 63, 4)", "rgb(127, 96, 0)", "rgb(39, 78, 19)",
                         "rgb(12, 52, 61)", "rgb(28, 69, 135)", "rgb(7, 55, 99)", "rgb(32, 18, 77)", "rgb(76, 17, 48)"]
                 ],
-                selectionPalette: [], // 選択色のパレットの初期値
+                selectionPalette: [], 
 
-                // 値の変更(確定)時イベント
+                // 值改变时的事件（确认）
                 change: function (color) {
                     $("#bodyDesign").css(
                         "background", 
                         "radial-gradient(ellipse at center, " + color + ", rgb(255, 255, 255)) 100%");
                 },
-                // 値の変更(未確定)時イベント
+                // 值变化时的事件（未确认）
                 move: function (color) {
                     $("#bodyDesign").css(
                         "background", 
@@ -141,13 +141,13 @@
                         savedcolor2 = 0.5;
                     }
                 },
-                // ピッカーが閉じた時のイベント
+                // 选择器关闭时的事件
                 hide: function (color) {
                 },
-                // ピッカーの表示イベント
+                // 选择器显示事件
                 show: function (color) {
                 },
-                // ピッカーの表示直前のイベント。return falseでピッカーの表示を阻害できる
+                // 显示选择器之前的事件。 您可以使用 return false 阻止选择器显示
                 beforeShow: function (color) {
                 },
             });
@@ -221,7 +221,7 @@
     </div>
 
     <script>
-
+        //主脚本
 
         var input_hide = false, conv1_hide = false, down1_hide = false, conv2_hide = false, down2_hide = false, fc1_hide = false, fc2_hide = false, output_hide = false;
         var input_was_hidden = false, conv1_was_hidden = false, down1_was_hidden = false, conv2_was_hidden = false, down2_was_hidden = false, fc1_was_hidden = false, fc2_was_hidden = false, output_was_hidden = false;
@@ -453,18 +453,16 @@
 
 
 
-            getNNOutput();
+            getNNOutput();//get the output of the neural network
         }
 
-        function drawCubes() {
+        function drawCubes() { //draws the cubes
 
             var weight = 1, i;
             var geometry = new THREE.Geometry();
             var pickingGeometry = new THREE.Geometry();
             var pickingMaterial = new THREE.MeshBasicMaterial({ vertexColors: THREE.VertexColors });
             var defaultMaterial = new THREE.MeshLambertMaterial({ color: 0xffffff, shading: THREE.FlatShading, vertexColors: THREE.VertexColors, transparent: true });
-            //defaultMaterial.side = THREE.DoubleSide;
-            ///*
             var materials = [];
             for (i = 0; i < nNodes; i++) {
                 materials[i] = new THREE.MeshLambertMaterial({ color: 0x00ff00, shading: THREE.FlatShading, transparent: true });
@@ -528,7 +526,7 @@
 
             }
 
-            var drawnObject = new THREE.Mesh(geometry, defaultMaterial);//new THREE.MeshFaceMaterial(materials) );
+            var drawnObject = new THREE.Mesh(geometry, defaultMaterial);
             drawnObject.name = 'cubes';
             scene.add(drawnObject);
 
@@ -621,7 +619,7 @@
             }
         }
 
-        function drawEdges() {
+        function drawEdges() { // draw edges between nodes
             //console.log('draw edges');
             var lineMat = new THREE.LineBasicMaterial({
                 color: 0x0000ff,
@@ -635,7 +633,7 @@
             scene.add(line);
         }
 
-        function updateEdges() {
+        function updateEdges() {   // update edges between nodes
             var r = 1, g = 1, b = 1, rw = 1, gw, bw, i, j, v, colorNum, weight;
             var vertAdjust = 3;
             var numChildren = scene.children.length;
@@ -963,7 +961,7 @@
             }
         }
 
-        function onWindowResize(e) {
+        function onWindowResize(e) {//adjust the camera when the window is resized
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
@@ -1010,7 +1008,7 @@
 
             requestAnimationFrame(animate);
             render();
-            /*stats.update();*/
+            
 
         }
 
