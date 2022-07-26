@@ -251,7 +251,6 @@
         var nHiddenLayers = 2;
         var nFinalNodes = 10;
         var nNodes = nPixels + nConvNodes_1 + nConvNodes_1_down + nConvNodes_2 + nConvNodes_2_down + nHiddenNodes_1 + nHiddenNodes_2 + nFinalNodes;
-        //console.log('nNodes = ' + nNodes);
         var allNodeNums = new Array(nNodes);
         var allNodeInputs = new Array(nNodes);
         var allNodeOutputs = new Array(nNodes);
@@ -446,13 +445,6 @@
             cameraControls = new THREE.OrbitControls(camera, renderer.domElement);
             cameraControls.target.set(0, 0, 0);
 
-
-            /*
-            stats = new Stats();
-            stats.domElement.style.position = 'absolute';
-            stats.domElement.style.top = '0px';
-            container.appendChild( stats.domElement );
-            */
             renderer.domElement.addEventListener('mousemove', onMouseMove);
             renderer.domElement.addEventListener('mousedown', onMouseDown);
             renderer.domElement.addEventListener('click', onClick);
@@ -482,8 +474,7 @@
             var pickingGeometry = new THREE.Geometry();
             var pickingMaterial = new THREE.MeshBasicMaterial({ vertexColors: THREE.VertexColors });
             var defaultMaterial = new THREE.MeshLambertMaterial({ color: 0xffffff, shading: THREE.FlatShading, vertexColors: THREE.VertexColors, transparent: true });
-            //defaultMaterial.side = THREE.DoubleSide;
-            ///*
+
             var materials = [];
             for (i = 0; i < nNodes; i++) {
                 materials[i] = new THREE.MeshLambertMaterial({ color: 0x00ff00, shading: THREE.FlatShading, transparent: true });
