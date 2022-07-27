@@ -17,7 +17,7 @@
     <script src="js/sylvester.src.js"></script>
     <script src="js/GeometryUtils.js"></script>
     <script src="js/processing.min.js"></script>
-
+    <!--加载画板-->
     <script src="js/drawingboard/utils.js"></script>
     <script src="js/drawingboard/board.js"></script>
     <script src="js/drawingboard/controls/control.js"></script>
@@ -26,7 +26,7 @@
     <script src="js/drawingboard/controls/navigation.js"></script>
     <script src="js/drawingboard/controls/size.js"></script>
     <script src="js/drawingboard/controls/download.js"></script>
-
+    <!--加载神经网络模型-->
     <script src="js/nn/convnet.js"></script>
     <script src="js/nn/nn_funcs_merge4.js"></script>
     <script src="js/createText_func.js"></script>
@@ -39,13 +39,13 @@
 
     <link rel="stylesheet" type="text/css" href="css/katex.min.css">
     <script type="text/javascript" src="js/katex.min.js"></script>
-
+    <!--加载调色板-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/i18n/jquery.spectrum-ja.min.js"></script>
     <link rel="stylesheet" type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.css">
 
-    <style>
+    <style>     /*调色板*/
         #bodyDesign {
             font-family: Arial;
             background-color: #ffffff;
@@ -213,7 +213,7 @@
             </div>
         </div>
         <div id="filterInterface">
-
+        <!--调色板-->
         </div>
         <input type="text" id="picker">
 
@@ -327,7 +327,7 @@
 
         var tinyCtx = $("#tiny")[0].getContext("2d");
         tinyCtx.scale(0.1, 0.1);
-        function updateTinyBoard() {
+        function updateTinyBoard() {//更新小框
             if (goodStart) {
 
                 var imageData = customBoard.getImg();
@@ -388,7 +388,7 @@
         }
 
 
-        function init() {
+        function init() {//初始化
             container = document.getElementById("webgl_container");
 
 
@@ -404,7 +404,7 @@
             pickingTexture.minFilter = THREE.LinearFilter;
             pickingTexture.generateMipmaps = false;
 
-            var light = new THREE.SpotLight(0xffffff, 1.0);
+            var light = new THREE.SpotLight(0xffffff, 1.0);//光源
             light.name = "light";
             light.position.set(0, 500, 2000);
             scene.add(light);
@@ -416,7 +416,7 @@
             light3.name = "light";
             scene.add(light3);
 
-            highlightBox = new THREE.Mesh(
+            highlightBox = new THREE.Mesh(//高亮方块
                 new THREE.BoxGeometry(12, 12, 12),
                 new THREE.MeshLambertMaterial({ color: 0xffff00 }
                 ));
@@ -424,7 +424,7 @@
             scene.add(highlightBox);
 
 
-            hideInputBox = new THREE.Mesh(
+            hideInputBox = new THREE.Mesh( 
                 new THREE.BoxGeometry(340, 20, 340),
                 new THREE.MeshLambertMaterial({ color: 0x00ff00, transparent: true, opacity: 0.1 }
                 ));
@@ -432,7 +432,7 @@
             hideInputBox.visible = true;
 
 
-            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });   //渲染器
             renderer.setClearColor(0x000000, 0);
             renderer.setPixelRatio(window.devicePixelRatio);
             renderer.setSize(window.innerWidth, window.innerHeight);
@@ -456,7 +456,7 @@
             getNNOutput();//get the output of the neural network
         }
 
-        function drawCubes() { //draws the cubes
+        function drawCubes() { 
 
             var weight = 1, i;
             var geometry = new THREE.Geometry();
@@ -579,7 +579,7 @@
             });
         }
 
-        function updateCubes() {
+        function updateCubes() {   
             var r, g, b, i, id;
             var numChildren = scene.children.length;
             for (i = 0; i < numChildren; i++) {
@@ -728,14 +728,14 @@
                                         v = 1;
                                         colorNum = math.round(v * 99);
                                         rw = 0;
-                                        gw = greenLookup[colorNum];
+                                        gw = greenLookup[colorNum];     //弃用
                                         bw = blueLookup[colorNum];
 
-                                        colors[vertCount] = new THREE.Color(rw, gw, bw);
-                                colors[vertCount].setHSL(savedcolor, v, 0.5);
+                                        colors[vertCount] = new THREE.Color(rw, gw, bw);    // color of edge
+                                        colors[vertCount].setHSL(savedcolor, v, 0.5);   //根据背景改变颜色
                                         vertCount++;
                                         colors[vertCount] = new THREE.Color(rw, gw, bw);
-                                colors[vertCount].setHSL(savedcolor, v, 0.5);
+                                        colors[vertCount].setHSL(savedcolor, v, 0.5);
                                         vertCount++;
                                     }
                                 }
@@ -979,7 +979,7 @@
         function onMouseUp(e) {
             rotatingCam = false;
 
-            var infobox = document.getElementById("infobox");
+            var infobox = document.getElementById("infobox");   //弃用
             if (intersected) {
                 if (infobox.style.visibility == "visible")
                     infobox.style.visibility = "hidden";
@@ -1129,7 +1129,7 @@
 
         }
 
-        function loadData() {
+        function loadData() {   //加载模型位置、名称数据
             var nodeCount = 0;
             $.getJSON('./js/nn/webgl_convnet2.json', function (data) {
                 $.each(data.nodes, function (i, node) {
