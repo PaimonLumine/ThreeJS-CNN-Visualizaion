@@ -124,7 +124,7 @@
                     //console.log(typeof savedcolor2);
                     savedcolor = parseFloat(savedcolor);
                     savedcolor = parseInt(savedcolor *3.6);
-                    savedcolor = (savedcolor + 270) % 360;
+                    savedcolor = (savedcolor + 270) % 360; //Color harmony (+270度)
                     savedcolor = savedcolor / 360;
                     savedcolor2 = savedcolor2 / 100;
                     if (savedcolor == NaN) {
@@ -688,10 +688,10 @@
                                     bw = blueLookup[colorNum];
 
                                     colors[vertCount] = new THREE.Color(rw, gw, bw);
-                                colors[vertCount].setHSL(savedcolor, v, 0.5);
+                                    colors[vertCount].setHSL(savedcolor, v, 0.5);
                                     vertCount++;
                                     colors[vertCount] = new THREE.Color(rw, gw, bw);
-                                colors[vertCount].setHSL(savedcolor, v, 0.5);
+                                    colors[vertCount].setHSL(savedcolor, v, 0.5);
                                     vertCount++;
                                 }
                             }
@@ -779,10 +779,10 @@
                                         bw = blueLookup[colorNum];
 
                                         colors[vertCount] = new THREE.Color(rw, gw, bw);
-                                colors[vertCount].setHSL(savedcolor, v, 0.5);
+                                        colors[vertCount].setHSL(savedcolor, v, 0.5);
                                         vertCount++;
                                         colors[vertCount] = new THREE.Color(rw, gw, bw);
-                                colors[vertCount].setHSL(savedcolor, v, 0.5);
+                                        colors[vertCount].setHSL(savedcolor, v, 0.5);
                                         vertCount++;
                                     }
                                 }
@@ -824,10 +824,10 @@
                                         bw = blueLookup[colorNum];
 
                                         colors[vertCount] = new THREE.Color(rw, gw, bw);
-                                colors[vertCount].setHSL(savedcolor, v, 0.5);
+                                        colors[vertCount].setHSL(savedcolor, v, 0.5);
                                         vertCount++;
                                         colors[vertCount] = new THREE.Color(rw, gw, bw);
-                                colors[vertCount].setHSL(savedcolor, v, 0.5);
+                                        colors[vertCount].setHSL(savedcolor, v, 0.5);
                                         vertCount++;
                                     }
                                 }
